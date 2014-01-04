@@ -25,7 +25,7 @@ feature 'user adds a building', %q{
     fill_in 'Description', with: 'includes the CIC and General Assembly'
 
     click_on 'Create Building'
-    expect(page).to have_content 'Building was created successfully.'
+    expect(page).to have_content 'Building was successfully created.'
     expect(page).to have_content 'New Building'
   end
 
