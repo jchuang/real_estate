@@ -1,0 +1,25 @@
+<h1>Owner Details</h1>
+
+<h2>Contact Information</h2>
+<p>Name: <%= "#{@owner.first_name} #{@owner.last_name}" %></p>
+<p>Email: <%= @owner.email %></p>
+<p>Company: <%= @owner.company_name %></p>
+
+<h2>Buildings</h2>
+<table>
+  <tr>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+  </tr>
+
+  <% @buildings.each do |building| %>
+  <tr>
+    <td><%= building.address %></td>
+    <td><%= building.city %></td>
+    <td><%= building.state %></td>
+    <td><%= building.zip_code %></td>
+  </tr>
+  <% end %>
+</table>

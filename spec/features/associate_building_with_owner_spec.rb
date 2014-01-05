@@ -11,7 +11,7 @@ feature 'associate building with owner', %q{
   # When recording a building, I want to optionally associate the building with its rightful owner.
   # If I delete an owner, the owner and its primary key should no longer be associated with any properties.
 
-  scenario 'assign an owner when creating a building' do
+  scenario 'buildings can be associated with an owner' do
     owner1 = FactoryGirl.create(:owner)
     owner2 = FactoryGirl.create(:owner)
 
@@ -19,12 +19,12 @@ feature 'associate building with owner', %q{
     building2 = FactoryGirl.create(:building, owner: owner1)
     building3 = FactoryGirl.create(:building, owner: nil)
 
-    visit "owners/#{owner1.id}"
+    visit owner_path(owner1)
     expect(page).to have_content building1.address
     expect(page).to have_content building2.address
 
-    visit "owners/#{owner2.id}"
-    expect(page).to_not have_content 'Boston'
+    visit owner_path(owner2)
+    expect(page).to_not have_content 'Harrison Ave.'
   end
 
   scenario 'deleting an owner means their properties are no longer associated'
