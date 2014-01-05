@@ -1,0 +1,13 @@
+<p class="notice"><%= notice %></p>
+
+<h1>New Owner</h1>
+
+<%= simple_form_for @owner do |f| %>
+
+  <%= f.input :first_name, label: 'First Name' %>
+  <%= f.input :last_name, label: 'Last Name' %>
+  <%= f.input :email, label: 'Email Address' %>
+  <%= f.input :company_name, label: 'Company Name' %>
+  <%= f.button :submit %>
+
+<% end %>
