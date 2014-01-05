@@ -29,4 +29,25 @@ feature 'user adds a building', %q{
     expect(page).to have_content 'New Building'
   end
 
+  scenario 'required information is not provided' do
+    visit 'buildings/new'
+    click_on 'Create Building'
+
+    expect(page).to_not have_content 'Building was successfully created.'
+    within ".input.building_address" do
+      expect(page).to have_content "can't be blank"
+    end
+    within ".input.building_city" do
+      expect(page).to have_content "can't be blank"
+    end
+    within ".input.building_state" do
+      expect(page).to have_content "can't be blank"
+    end
+    within ".input.building_zip_code" do
+      expect(page).to have_content "can't be blank"
+    end
+  end
+
+  scenario 'required information is provided in an incorrect format'
+
   end
