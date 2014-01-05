@@ -6,4 +6,6 @@ class Owner < ActiveRecord::Base
     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/,
       message: 'must be a valid email address' }
 
+  has_many :buildings, inverse_of: :owner, dependent: :nullify
+
 end

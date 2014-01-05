@@ -16,4 +16,6 @@ describe Owner do
     'neil.armstrong') }
   it { should_not have_valid(:email).when(*blanks) }
 
+  it { should have_many(:buildings).dependent(:nullify) }
+
 end

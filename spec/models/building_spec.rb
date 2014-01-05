@@ -19,4 +19,6 @@ describe Building do
   it { should_not have_valid(:zip_code).when('02111-1234', 'H2V 1X9') }
   it { should_not have_valid(:zip_code).when(*blanks) }
 
+  it { should belong_to(:owner) }
+
 end
