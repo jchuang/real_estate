@@ -32,8 +32,8 @@ feature 'user adds a building', %q{
   scenario 'required information is not provided' do
     visit 'buildings/new'
     click_on 'Create Building'
-
     expect(page).to_not have_content 'Building was successfully created.'
+
     within ".input.building_address" do
       expect(page).to have_content "can't be blank"
     end
@@ -48,5 +48,22 @@ feature 'user adds a building', %q{
     end
   end
 
-  scenario 'required information is not formatted correctly'
+  scenario 'required information is not formatted correctly' do
+    visit 'buildings/new'
+
+    fill_in 'Address', with: 'some address'
+    fill_in 'City', with: 'Cambridge'
+    select 'MA', from: 'State'
+    fill_in 'Zip Code', with: '02142-1234'
+
+    click_on 'Create Building'
+    expect(page).to_not have_content 'Building was successfully created.'
+
+    within ".input.building_address" do
+      expect(page).to have_content 'must include number and street name'
+    end
+    within ".input.building_zip_code" do
+      expect(page).to have_content 'must be 5 digits long'
+    end
+  end
 end
