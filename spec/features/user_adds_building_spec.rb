@@ -20,7 +20,7 @@ feature 'user adds a building', %q{
 
     fill_in 'Address', with: '1 Broadway'
     fill_in 'City', with: 'Cambridge'
-    fill_in 'State', with: 'MA'
+    select 'MA', from: 'State'
     fill_in 'Zip Code', with: '02142'
     fill_in 'Description', with: 'includes the CIC and General Assembly'
 
@@ -48,6 +48,5 @@ feature 'user adds a building', %q{
     end
   end
 
-  scenario 'required information is provided in an incorrect format'
-
-  end
+  scenario 'required information is not formatted correctly'
+end

@@ -6,7 +6,7 @@
 
   <%= f.input :address %>
   <%= f.input :city %>
-  <%= f.input :state %>
+  <%= f.input :state, collection: Building.state_abbreviations %>
   <%= f.input :zip_code, label: 'Zip Code' %>
   <%= f.input :description %>
   <%= f.button :submit %>

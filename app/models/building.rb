@@ -13,4 +13,8 @@ class Building < ActiveRecord::Base
   validates :zip_code, presence: true, format: { with: /\A\d{5}\z/,
     message: 'must be 5 digits long' }
 
+  def self.state_abbreviations
+    STATE_ABBREVIATIONS
+  end
+
 end
