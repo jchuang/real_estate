@@ -27,6 +27,18 @@ feature 'associate building with owner', %q{
     expect(page).to_not have_content 'Harrison Ave.'
   end
 
-  scenario 'deleting an owner means their properties are no longer associated'
+  scenario 'deleting an owner means their properties are no longer associated' do
+    owner = FactoryGirl.create(:owner)
+    building = FactoryGirl.create(:building, owner: owner)
+
+    visit building_path(building)
+    expect(page).to have_content "Owner: #{ owner.first_name } #{ owner.last_name }"
+
+    owner.destroy
+    building.reload
+
+    visit building_path(building)
+    expect(page).to have_content 'Owner: not recorded'
+  end
 
 end
