@@ -19,4 +19,12 @@ class Building < ActiveRecord::Base
     STATE_ABBREVIATIONS
   end
 
+  def owner_name
+    if owner.present?
+      "#{ owner.first_name } #{ owner.last_name }"
+    else
+      'not recorded'
+    end
+  end
+
 end
