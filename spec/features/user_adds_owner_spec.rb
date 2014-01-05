@@ -25,6 +25,21 @@ feature 'user adds an owner', %q{
     expect(page).to have_content 'New Owner'
   end
 
-  scenario 'required information is missing or invalid'
+  scenario 'required information is missing or invalid' do
+    visit 'owners/new'
+    fill_in 'Email Address', with: 'some email'
+    click_on 'Create Owner'
+
+    expect(page).to_not have_content 'Owner was successfully created.'
+    within ".input.owner_first_name" do
+      expect(page).to have_content "can't be blank"
+    end
+    within ".input.owner_last_name" do
+      expect(page).to have_content "can't be blank"
+    end
+    within ".input.owner_email" do
+      expect(page).to have_content 'must be a valid email address'
+    end
+  end
 
 end
