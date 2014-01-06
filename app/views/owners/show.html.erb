@@ -14,14 +14,8 @@
     <th>Zip</th>
   </tr>
 
-  <% @buildings.each do |building| %>
-  <tr>
-    <td><%= building.address %></td>
-    <td><%= building.city %></td>
-    <td><%= building.state %></td>
-    <td><%= building.zip_code %></td>
-  </tr>
-  <% end %>
+<%= render partial: 'building', collection: @buildings %>
+
 </table>
 
 <p><%= link_to 'Add New Owner', new_owner_path %></p>
